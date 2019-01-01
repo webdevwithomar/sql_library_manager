@@ -1,4 +1,7 @@
 const express = require('express');
+
+
+// Init app
 const app = express();
 
 app.listen(3000, () => {

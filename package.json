@@ -2,7 +2,7 @@
   "name": "sql_library_manager",
   "version": "1.0.0",
   "description": "A library manager built using node.js and sqlite3",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/nodemon app.js"
@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "pug": "^2.0.3"
   }
 }
