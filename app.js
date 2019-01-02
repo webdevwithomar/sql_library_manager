@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const Books = require('./models').Books;
 
 // Init app
 const app = express();
@@ -20,9 +21,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-const mainRoute = require('./routes');
+const mainRoute = require('./routes/books');
+const booksRoute = require('./routes/index');
 
-app.use(mainRoute);
+app.use('/', mainRoute);
+app.use('/books', booksRoute);
 
 // 404 and Server Error
 app.use((req, res, next) => {
