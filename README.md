@@ -1,5 +1,14 @@
 # Library Manager
-## A library manager app built using node.js, express and sqlite3 database
+## A library manager app to keep records of book, update them and remove them when necessary.
+
+### Technologies Used
+
+Built using :- 
+- node.js
+- express
+- sqlite3
+- sequelize
+- pug
 
 ### Usage
 - Open terminal and write "npm install". It will install all the dependencies for the project.

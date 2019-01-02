@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const sequelize = require('sequelize');
-const Op = sequelize.Op;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const Book = require('../models').Book;
 
-// Routes
-
-// Redirecting the root route to books
-router.get('/', (req, res) => {
+// Redirect root route to books
+router.get('/', (req, res, next) => {
   res.redirect('/books');
 });
 
+// Render new-book template
 router.get('/books/new', (req, res, next) => {
-  res.render('new_book', { book: Books.build() });
+  res.render('new-book', { book: Book.build() });
 });
 
+// Search
 router.get('/books/search', (req, res) => {
   let { q } = req.query;
   Book.findAll({
@@ -29,12 +29,12 @@ router.get('/books/search', (req, res) => {
   }).then(books => {
     if (books.length >= 1) {
 
-      res.render('index', {
+      res.render('book-list', {
         books: books,
         home: true
       })
     } else {
-      res.render('no-search-results')
+      res.render('page-not-found')
     }
   }).catch(err => { res.send(500) });
 });

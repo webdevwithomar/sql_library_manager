@@ -1,8 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const path = require('path');
-const Books = require('./models').Books;
+const Book = require('./models').Book;
 
 // Init app
 const app = express();
@@ -14,15 +12,9 @@ app.set('view engine', 'pug');
 // Using static assets
 app.use('/public', express.static('public'));
 
-//body and cookie parsers
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Routes
-const mainRoute = require('./routes/books');
-const booksRoute = require('./routes/index');
+const mainRoute = require('./routes/index');
+const booksRoute = require('./routes/books');
 
 app.use('/', mainRoute);
 app.use('/books', booksRoute);
@@ -44,7 +36,7 @@ app.use((req, res, next) => {
   res.locals.error = err;
   res.status(err.status);
   if (err.status === 404) {
-    res.render('404');
+    res.render('page-not-found');
   } else {
     res.render('error');
   }
