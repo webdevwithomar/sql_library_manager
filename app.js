@@ -32,12 +32,14 @@ app.use((req, res, next) => {
   next(err);
 });
 
-app.use((req, res, next) => {
+app.use((err, req, res, next) => {
   res.locals.error = err;
   res.status(err.status);
   if (err.status === 404) {
+    console.log('Sorry not found !');
     res.render('page-not-found');
   } else {
+    console.log('Server Error');
     res.render('error');
   }
 });
